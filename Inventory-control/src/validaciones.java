@@ -74,4 +74,17 @@ public class validaciones {
         }
         return respuesta;
     }
+    public boolean val_name(String cadena){
+        boolean respuesta = true;
+        char[] letras = cadena.toCharArray();
+        for(char letra : letras){
+            int letra_ascii = letra;
+            if(!(letra_ascii >64 && letra_ascii<91 || 
+                    letra_ascii >96 && letra_ascii<123)){
+                respuesta = false;
+                break;
+            }
+        }
+        return respuesta;
+    }
 }

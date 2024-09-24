@@ -50,9 +50,9 @@ public class Main extends javax.swing.JFrame {
         Panel_Inventory = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_name = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_brand = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -212,16 +212,16 @@ public class Main extends javax.swing.JFrame {
         jLabel11.setText("Name");
         Panel_Inventory.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        Panel_Inventory.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 180, 30));
+        txt_name.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        Panel_Inventory.add(txt_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 180, 30));
 
         jLabel12.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Brand");
         Panel_Inventory.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        Panel_Inventory.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 180, 30));
+        txt_brand.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        Panel_Inventory.add(txt_brand, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 180, 30));
 
         jTextField4.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         Panel_Inventory.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 80, 180, 30));
@@ -274,6 +274,11 @@ public class Main extends javax.swing.JFrame {
         label4.setBackground(new java.awt.Color(0, 153, 51));
         label4.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         label4.setText("Add");
+        label4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label4MouseClicked(evt);
+            }
+        });
         Panel_Inventory.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 130, 40));
 
         label5.setAlignment(java.awt.Label.CENTER);
@@ -435,6 +440,16 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_add_supplierMouseClicked
 
+    private void label4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label4MouseClicked
+        validaciones vali = new validaciones();
+        boolean nombre_producto = vali.val_name(txt_name.getText().toString());
+        if(nombre_producto){
+            JOptionPane.showMessageDialog(null, "nombre VALIDO");
+        }else{
+            JOptionPane.showMessageDialog(null, "nombre INVALIDO");
+        }
+    }//GEN-LAST:event_label4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -507,8 +522,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private java.awt.Label label1;
@@ -517,7 +530,9 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Label label4;
     private java.awt.Label label5;
     private javax.swing.JTextField txt_address;
+    private javax.swing.JTextField txt_brand;
     private javax.swing.JTextField txt_company;
+    private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_phone;
     private javax.swing.JTextField txt_rfc;
     // End of variables declaration//GEN-END:variables
