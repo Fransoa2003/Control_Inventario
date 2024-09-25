@@ -36,15 +36,16 @@ public class Main extends javax.swing.JFrame {
         btnSupplier = new javax.swing.JLabel();
         btnShop = new javax.swing.JLabel();
         btnInventory = new javax.swing.JLabel();
+        btnShopping = new javax.swing.JLabel();
         panelSlide = new javax.swing.JPanel();
-        panelShop = new javax.swing.JPanel();
-        titleShop = new javax.swing.JLabel();
+        panelSale = new javax.swing.JPanel();
+        titleSale = new javax.swing.JLabel();
         lblQuantityShop = new javax.swing.JLabel();
         comboQuantity = new javax.swing.JComboBox<>();
         lblNameShop = new javax.swing.JLabel();
         comboProducto = new javax.swing.JComboBox<>();
-        scrollShop = new javax.swing.JScrollPane();
-        tableShop = new javax.swing.JTable();
+        scrollSale = new javax.swing.JScrollPane();
+        tableSale = new javax.swing.JTable();
         btnBuy = new java.awt.Label();
         panelInventory = new javax.swing.JPanel();
         titleInventory = new javax.swing.JLabel();
@@ -78,6 +79,10 @@ public class Main extends javax.swing.JFrame {
         btnAddSupplier = new java.awt.Label();
         scrollSupplier = new javax.swing.JScrollPane();
         tableSupplier = new javax.swing.JTable();
+        panelShopping = new javax.swing.JPanel();
+        titleInventory1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jLabel5.setText("jLabel5");
 
@@ -108,13 +113,13 @@ public class Main extends javax.swing.JFrame {
                 btnSupplierMouseClicked(evt);
             }
         });
-        panelMenu.add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 150, 30));
+        panelMenu.add(btnSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 150, 30));
 
         btnShop.setBackground(new java.awt.Color(255, 255, 255));
         btnShop.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         btnShop.setForeground(new java.awt.Color(255, 255, 255));
         btnShop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_shopping.png"))); // NOI18N
-        btnShop.setText("Shopping");
+        btnShop.setText("Sale");
         btnShop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnShop.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,41 +141,54 @@ public class Main extends javax.swing.JFrame {
         });
         panelMenu.add(btnInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 150, 30));
 
+        btnShopping.setBackground(new java.awt.Color(255, 255, 255));
+        btnShopping.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        btnShopping.setForeground(new java.awt.Color(255, 255, 255));
+        btnShopping.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgShop.png"))); // NOI18N
+        btnShopping.setText("Shopping");
+        btnShopping.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnShopping.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnShoppingMouseClicked(evt);
+            }
+        });
+        panelMenu.add(btnShopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, 30));
+
         panelVenta.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 480));
 
         panelSlide.setLayout(new java.awt.CardLayout());
 
-        panelShop.setBackground(new java.awt.Color(0, 0, 0));
-        panelShop.setForeground(new java.awt.Color(255, 255, 255));
-        panelShop.setInheritsPopupMenu(true);
-        panelShop.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelSale.setBackground(new java.awt.Color(0, 0, 0));
+        panelSale.setForeground(new java.awt.Color(255, 255, 255));
+        panelSale.setInheritsPopupMenu(true);
+        panelSale.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        titleShop.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
-        titleShop.setForeground(new java.awt.Color(204, 204, 204));
-        titleShop.setText("Shopping control");
-        panelShop.add(titleShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        titleSale.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
+        titleSale.setForeground(new java.awt.Color(204, 204, 204));
+        titleSale.setText("Sale control");
+        panelSale.add(titleSale, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
 
         lblQuantityShop.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         lblQuantityShop.setForeground(new java.awt.Color(255, 255, 255));
         lblQuantityShop.setText("Quantity");
-        panelShop.add(lblQuantityShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        panelSale.add(lblQuantityShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         comboQuantity.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         comboQuantity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboQuantity.setBorder(null);
-        panelShop.add(comboQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 120, 30));
+        panelSale.add(comboQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 120, 30));
 
         lblNameShop.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         lblNameShop.setForeground(new java.awt.Color(255, 255, 255));
         lblNameShop.setText("Name");
-        panelShop.add(lblNameShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+        panelSale.add(lblNameShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         comboProducto.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         comboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboProducto.setBorder(null);
-        panelShop.add(comboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 460, 30));
+        panelSale.add(comboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 460, 30));
 
-        tableShop.setModel(new javax.swing.table.DefaultTableModel(
+        tableSale.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -178,22 +196,22 @@ public class Main extends javax.swing.JFrame {
                 "ID", "Name", "Description", "Quantity", "Total"
             }
         ));
-        scrollShop.setViewportView(tableShop);
-        if (tableShop.getColumnModel().getColumnCount() > 0) {
-            tableShop.getColumnModel().getColumn(0).setResizable(false);
-            tableShop.getColumnModel().getColumn(0).setPreferredWidth(10);
+        scrollSale.setViewportView(tableSale);
+        if (tableSale.getColumnModel().getColumnCount() > 0) {
+            tableSale.getColumnModel().getColumn(0).setResizable(false);
+            tableSale.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
-        panelShop.add(scrollShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 590, 250));
+        panelSale.add(scrollSale, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 590, 250));
 
         btnBuy.setAlignment(java.awt.Label.CENTER);
         btnBuy.setBackground(new java.awt.Color(0, 153, 102));
         btnBuy.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         btnBuy.setForeground(new java.awt.Color(255, 255, 255));
         btnBuy.setText("Buy now");
-        panelShop.add(btnBuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 130, 40));
+        panelSale.add(btnBuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 130, 40));
 
-        panelSlide.add(panelShop, "card4");
+        panelSlide.add(panelSale, "card4");
 
         panelInventory.setBackground(new java.awt.Color(0, 0, 0));
         panelInventory.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -372,6 +390,31 @@ public class Main extends javax.swing.JFrame {
 
         panelSlide.add(panelSupplier, "card2");
 
+        panelShopping.setBackground(new java.awt.Color(0, 0, 0));
+        panelShopping.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        titleInventory1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        titleInventory1.setForeground(new java.awt.Color(255, 255, 255));
+        titleInventory1.setText("Shopping");
+        panelShopping.add(titleInventory1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "IdProducto", "Provedor", "Total", "Fecha"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        panelShopping.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 620, 400));
+
+        panelSlide.add(panelShopping, "card5");
+
         panelVenta.add(panelSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 660, 490));
 
         getContentPane().add(panelVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 480));
@@ -384,21 +427,24 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCompanyActionPerformed
 
     private void btnShopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShopMouseClicked
-      panelShop.setVisible(true);
+      panelSale.setVisible(true);
       panelInventory.setVisible(false);
       panelSupplier.setVisible(false);
+      panelShopping.setVisible(false);
     }//GEN-LAST:event_btnShopMouseClicked
 
     private void btnInventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventoryMouseClicked
-      panelShop.setVisible(false);
+      panelSale.setVisible(false);
       panelInventory.setVisible(true);
       panelSupplier.setVisible(false);
+      panelShopping.setVisible(false);
     }//GEN-LAST:event_btnInventoryMouseClicked
 
     private void btnSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMouseClicked
-      panelShop.setVisible(false);
+      panelSale.setVisible(false);
       panelInventory.setVisible(false);
       panelSupplier.setVisible(true);
+      panelShopping.setVisible(false);
     }//GEN-LAST:event_btnSupplierMouseClicked
 
     private void txtRfcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRfcActionPerformed
@@ -409,7 +455,7 @@ public class Main extends javax.swing.JFrame {
         validaciones validar = new validaciones();
         boolean rfc = validar.valRfc(txtRfc.getText().toString());
         boolean phone = validar.valPhone(txtPhone.getText().toString());
-        boolean name_company = validar.valCompany(txtCompany.getText().toString());
+        boolean nameCompany = validar.valCompany(txtCompany.getText().toString());
         boolean address = validar.valAddress(txtAddress.getText().toString());
         //valida el rcf
         if(rfc){
@@ -417,7 +463,7 @@ public class Main extends javax.swing.JFrame {
             //valida el telefono
             if(phone){
                 JOptionPane.showMessageDialog(null, "TELEFONO VALIDO");
-                if(name_company){
+                if(nameCompany){
                     JOptionPane.showMessageDialog(null, "RAZON S. VALIDO");
                     if(address){
                         JOptionPane.showMessageDialog(null, "DIRECCION VALIDO");
@@ -438,13 +484,38 @@ public class Main extends javax.swing.JFrame {
 
     private void txtAddInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddInvMouseClicked
         validaciones vali = new validaciones();
-        boolean nombre_producto = vali.valName(txtName.getText().toString());
-        if(nombre_producto){
-            JOptionPane.showMessageDialog(null, "nombre VALIDO");
+        boolean nombreProducto = vali.valName(txtName.getText().toString());
+        boolean marca = vali.valName(txtBrand.getText().toString());
+        boolean cantidad = vali.valQuantity(txtQuantity.getText().toString());
+        boolean descripcion = vali.valName(txtDescription.getText().toString());
+        if(nombreProducto){
+            JOptionPane.showMessageDialog(null, "NOMBRE VALIDO");
+            if(marca){
+                JOptionPane.showMessageDialog(null, "MARCA VALIDO");
+                if(cantidad){
+                    JOptionPane.showMessageDialog(null, "CANTIDAD VALIDO");
+                    if(descripcion){
+                        JOptionPane.showMessageDialog(null, "DESCRIPCION VALIDO");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "DESCRIPCION INVALIDO");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "CANTIDAD INVALIDO");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "MARCA INVALIDO");
+            }
         }else{
-            JOptionPane.showMessageDialog(null, "nombre INVALIDO");
+            JOptionPane.showMessageDialog(null, "NOMBRE INVALIDO");
         }
     }//GEN-LAST:event_txtAddInvMouseClicked
+
+    private void btnShoppingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShoppingMouseClicked
+        panelSale.setVisible(false);
+        panelInventory.setVisible(false);
+        panelSupplier.setVisible(false);
+        panelShopping.setVisible(true);
+    }//GEN-LAST:event_btnShoppingMouseClicked
 
     /**
      * @param args the command line arguments
@@ -488,12 +559,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel btnInventory;
     private java.awt.Label btnModify;
     private javax.swing.JLabel btnShop;
+    private javax.swing.JLabel btnShopping;
     private javax.swing.JLabel btnSupplier;
     private javax.swing.JComboBox<String> comboProducto;
     private javax.swing.JComboBox<String> comboQuantity;
     private javax.swing.JComboBox<String> comboSize;
     private javax.swing.JComboBox<String> comboSupplier;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblCompany;
@@ -508,18 +582,20 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel lblSuplier;
     private javax.swing.JPanel panelInventory;
     private javax.swing.JPanel panelMenu;
-    private javax.swing.JPanel panelShop;
+    private javax.swing.JPanel panelSale;
+    private javax.swing.JPanel panelShopping;
     private javax.swing.JPanel panelSlide;
     private javax.swing.JPanel panelSupplier;
     private javax.swing.JPanel panelVenta;
-    private javax.swing.JScrollPane scrollShop;
+    private javax.swing.JScrollPane scrollSale;
     private javax.swing.JScrollPane scrollSupplier;
     private javax.swing.JTable tableInventory;
-    private javax.swing.JTable tableShop;
+    private javax.swing.JTable tableSale;
     private javax.swing.JTable tableSupplier;
     private javax.swing.JLabel titleDashboard;
     private javax.swing.JLabel titleInventory;
-    private javax.swing.JLabel titleShop;
+    private javax.swing.JLabel titleInventory1;
+    private javax.swing.JLabel titleSale;
     private javax.swing.JLabel titleSupplier;
     private java.awt.Label txtAddInv;
     private javax.swing.JTextField txtAddress;
