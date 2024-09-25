@@ -9,7 +9,7 @@
  */
 public class validaciones {
     //Validacion rfc
-    public boolean val_rfc(String cadena){
+    public boolean valRfc(String cadena){
         
         char[] letra = cadena.toCharArray();
         boolean respuesta = true;
@@ -17,9 +17,9 @@ public class validaciones {
             respuesta = false;
         }
         for(char letras : letra){
-            int letra_ascii = letras;
-            if(!(letra_ascii > 47 && letra_ascii < 58 || 
-                    letra_ascii > 64 && letra_ascii<91)){
+            int letraAscii = letras;
+            if(!(letraAscii > 47 && letraAscii < 58 || 
+                    letraAscii > 64 && letraAscii<91)){
                 respuesta = false;
                 break;
             }
@@ -28,62 +28,73 @@ public class validaciones {
         return respuesta;
     }
     //Validar telefono
-    public boolean val_phone(String cadena){
+    public boolean valPhone(String cadena){
         boolean respuesta = true;
         char[] letras = cadena.toCharArray();
         if(cadena.length()!=10){
             respuesta = false;
         }
         for(char letra:letras){
-            int letra_ascii = letra;
-            if(!(letra_ascii > 47 && letra_ascii<64)){
+            int letraAscii = letra;
+            if(!(letraAscii > 47 && letraAscii<64)){
                 respuesta = false;
                 break;
-            }
-            
+            } 
         }
         return respuesta;
     }
     //validar razon social
-    public boolean val_company(String cadena){
+    public boolean valCompany(String cadena){
         boolean respuesta = true;
         char[] letras = cadena.toCharArray();
         for(char letra : letras){
-            int letra_ascii = letra;
-            if(!(letra_ascii >64 && letra_ascii<91 ||
-                    letra_ascii > 96 && letra_ascii<123 ||
-                    letra_ascii == 32 || letra_ascii == 46)){
+            int letraAscii = letra;
+            if(!(letraAscii >64 && letraAscii<91 ||
+                    letraAscii > 96 && letraAscii<123 ||
+                    letraAscii == 32 || letraAscii == 46)){
                 respuesta = false;
                 break;
             }
         }
         return respuesta;
     }
-    public boolean val_address(String cadena){
+    public boolean valAddress(String cadena){
         boolean respuesta = true;
         char[] letras = cadena.toCharArray();
         for(char letra : letras){
-            int letra_ascii = letra;
-            if(!(letra_ascii >64 && letra_ascii<91 ||
-                    letra_ascii > 96 && letra_ascii<123 ||
-                    letra_ascii > 47 && letra_ascii < 58 ||
-                    letra_ascii == 32)){
+            int letraAscii = letra;
+            if(!(letraAscii >64 && letraAscii<91 ||
+                    letraAscii > 96 && letraAscii<123 ||
+                    letraAscii > 47 && letraAscii < 58 ||
+                    letraAscii == 32)){
                 respuesta = false;
                 break;
             }
         }
         return respuesta;
     }
-    public boolean val_name(String cadena){
+    public boolean valName(String cadena){
         boolean respuesta = true;
         char[] letras = cadena.toCharArray();
         for(char letra : letras){
-            int letra_ascii = letra;
-            if(!(letra_ascii >64 && letra_ascii<91 || 
-                    letra_ascii >96 && letra_ascii<123)){
+            int letraAscii = letra;
+            if(!(letraAscii >64 && letraAscii<91 || 
+                    letraAscii >96 && letraAscii<123)){
                 respuesta = false;
                 break;
             }
+        }
+        return respuesta;
+    }
+    public boolean valQuantity(String cadena){
+        boolean respuesta = true;
+        char[] letras = cadena.toCharArray();
+        for(char letra:letras){
+            int letraAscii = letra;
+            if(!(letraAscii > 47 && letraAscii<64)){
+                respuesta = false;
+                break;
+            } 
         }
         return respuesta;
     }
