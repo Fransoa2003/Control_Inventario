@@ -209,6 +209,11 @@ public class Main extends javax.swing.JFrame {
         btnBuy.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         btnBuy.setForeground(new java.awt.Color(255, 255, 255));
         btnBuy.setText("Buy now");
+        btnBuy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuyMouseClicked(evt);
+            }
+        });
         panelSale.add(btnBuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 130, 40));
 
         panelSlide.add(panelSale, "card4");
@@ -516,6 +521,11 @@ public class Main extends javax.swing.JFrame {
         panelSupplier.setVisible(false);
         panelShopping.setVisible(true);
     }//GEN-LAST:event_btnShoppingMouseClicked
+
+    private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
+        Usuarios user = new Usuarios();
+        user.addUsuarios();
+    }//GEN-LAST:event_btnBuyMouseClicked
 
     /**
      * @param args the command line arguments

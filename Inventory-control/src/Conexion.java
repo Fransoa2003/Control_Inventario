@@ -25,7 +25,7 @@ public class Conexion {
     
     public Conexion(){
         this.user = "root";
-        this.password = "root";
+        this.password = "123456";
         this.port = "3306";
         this.bd = "tienda";
         this.host = String.format("jdbc:mysql://127.0.0.1:%s/%s",this.port,this.bd);
