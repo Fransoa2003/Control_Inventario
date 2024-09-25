@@ -13,10 +13,10 @@ import java.sql.SQLException;
  * @author Jesus Vazquez
  */
 public class Usuarios {
-    public boolean addUsuarios(){
+    public boolean mostrasUsuarios(){
         try{
             Conexion conexion = new Conexion();
-            String consulta = "select * from usuarios;";
+            String consulta = "INSERT INTO usuarios VALUES ()";
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
             sql.execute();
             System.out.println("Consulta exitosa");
@@ -26,8 +26,24 @@ public class Usuarios {
             Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE,"Ocurrio un error al registrar el producto",error);
             return false;
         }
-              
-        
+        return true;
+    }
+    public boolean addUsuarios(String [] valores){
+        try{
+            
+            Conexion conexion = new Conexion();
+            String consulta = "";
+            PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
+            sql.execute();
+            System.out.println("Consulta exitosa");
+            conexion.getConexion().close();
+            
+        }catch (SQLException error){
+            
+            Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE,"Ocurrio un error al registrar el producto",error);
+            
+            return false;
+        }
         return true;
     }
 }

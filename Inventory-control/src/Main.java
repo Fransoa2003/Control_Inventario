@@ -50,7 +50,7 @@ public class Main extends javax.swing.JFrame {
         panelInventory = new javax.swing.JPanel();
         titleInventory = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        txtCode = new javax.swing.JTextField();
         lblBrand = new javax.swing.JLabel();
         txtBrand = new javax.swing.JTextField();
         txtDescription = new javax.swing.JTextField();
@@ -228,11 +228,11 @@ public class Main extends javax.swing.JFrame {
 
         lblName.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
-        lblName.setText("Name");
+        lblName.setText("Code");
         panelInventory.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
-        txtName.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        panelInventory.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 180, 30));
+        txtCode.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        panelInventory.add(txtCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 180, 30));
 
         lblBrand.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         lblBrand.setForeground(new java.awt.Color(255, 255, 255));
@@ -489,7 +489,7 @@ public class Main extends javax.swing.JFrame {
 
     private void txtAddInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAddInvMouseClicked
         validaciones vali = new validaciones();
-        boolean nombreProducto = vali.valName(txtName.getText().toString());
+        boolean nombreProducto = vali.valCodigo(txtCode.getText().toString());
         boolean marca = vali.valName(txtBrand.getText().toString());
         boolean cantidad = vali.valQuantity(txtQuantity.getText().toString());
         boolean descripcion = vali.valName(txtDescription.getText().toString());
@@ -524,13 +524,13 @@ public class Main extends javax.swing.JFrame {
 
     private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
         Usuarios user = new Usuarios();
-        user.addUsuarios();
+        user.mostrasUsuarios();
     }//GEN-LAST:event_btnBuyMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -610,9 +610,9 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Label txtAddInv;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtCompany;
     private javax.swing.JTextField txtDescription;
-    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtRfc;
