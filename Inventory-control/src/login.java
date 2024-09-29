@@ -115,7 +115,7 @@ public class login extends javax.swing.JFrame {
             if(passLogin){
                 JOptionPane.showMessageDialog(null, "DATOS VALIDADOS");
             }else{
-                JOptionPane.showMessageDialog(null, "CORREO INVALIDO");
+                JOptionPane.showMessageDialog(null, "CONTRASENA INVALIDO");
             }
         }else{
             JOptionPane.showMessageDialog(null, "CORREO INVALIDO");

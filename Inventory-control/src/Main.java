@@ -37,6 +37,7 @@ public class Main extends javax.swing.JFrame {
         btnShop = new javax.swing.JLabel();
         btnInventory = new javax.swing.JLabel();
         btnShopping = new javax.swing.JLabel();
+        btnShopping1 = new javax.swing.JLabel();
         panelSlide = new javax.swing.JPanel();
         panelSale = new javax.swing.JPanel();
         titleSale = new javax.swing.JLabel();
@@ -66,6 +67,8 @@ public class Main extends javax.swing.JFrame {
         btnDelete = new java.awt.Label();
         comboSize = new javax.swing.JComboBox<>();
         comboSupplier = new javax.swing.JComboBox<>();
+        lblQuantityInv1 = new javax.swing.JLabel();
+        txtCosto = new javax.swing.JTextField();
         panelSupplier = new javax.swing.JPanel();
         titleSupplier = new javax.swing.JLabel();
         lblRfc = new javax.swing.JLabel();
@@ -83,6 +86,9 @@ public class Main extends javax.swing.JFrame {
         titleInventory1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        panelUser = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jLabel5.setText("jLabel5");
 
@@ -144,15 +150,28 @@ public class Main extends javax.swing.JFrame {
         btnShopping.setBackground(new java.awt.Color(255, 255, 255));
         btnShopping.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         btnShopping.setForeground(new java.awt.Color(255, 255, 255));
-        btnShopping.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgShop.png"))); // NOI18N
-        btnShopping.setText("Shopping");
+        btnShopping.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_white.png"))); // NOI18N
+        btnShopping.setText("User");
         btnShopping.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnShopping.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnShoppingMouseClicked(evt);
             }
         });
-        panelMenu.add(btnShopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, 30));
+        panelMenu.add(btnShopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 150, 40));
+
+        btnShopping1.setBackground(new java.awt.Color(255, 255, 255));
+        btnShopping1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        btnShopping1.setForeground(new java.awt.Color(255, 255, 255));
+        btnShopping1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgShop.png"))); // NOI18N
+        btnShopping1.setText("Shopping");
+        btnShopping1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnShopping1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnShopping1MouseClicked(evt);
+            }
+        });
+        panelMenu.add(btnShopping1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, 30));
 
         panelVenta.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 480));
 
@@ -174,7 +193,6 @@ public class Main extends javax.swing.JFrame {
         panelSale.add(lblQuantityShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         comboQuantity.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        comboQuantity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboQuantity.setBorder(null);
         panelSale.add(comboQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 120, 30));
 
@@ -184,16 +202,15 @@ public class Main extends javax.swing.JFrame {
         panelSale.add(lblNameShop, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         comboProducto.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        comboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboProducto.setBorder(null);
         panelSale.add(comboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 460, 30));
 
         tableSale.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Description", "Quantity", "Total"
+                "ID", "Code", "Description", "Quantity", "Total"
             }
         ));
         scrollSale.setViewportView(tableSale);
@@ -270,13 +287,13 @@ public class Main extends javax.swing.JFrame {
 
         tableInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Code", "Brand", "Quantity", "Descripcion", "Supplier", "Size", "Cost"
             }
         ));
         ScrollInventory.setViewportView(tableInventory);
@@ -307,13 +324,21 @@ public class Main extends javax.swing.JFrame {
         panelInventory.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 130, 40));
 
         comboSize.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        comboSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CH", "M", "G", "XL", "XXL" }));
         comboSize.setSelectedIndex(-1);
         panelInventory.add(comboSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 110, 30));
 
         comboSupplier.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        comboSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nike S.A de C.V", "Adidas S.A de C.V" }));
+        comboSupplier.setSelectedIndex(-1);
         panelInventory.add(comboSupplier, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 180, 30));
+
+        lblQuantityInv1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        lblQuantityInv1.setForeground(new java.awt.Color(255, 255, 255));
+        lblQuantityInv1.setText("Cost:");
+        panelInventory.add(lblQuantityInv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, 30));
+
+        txtCosto.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        panelInventory.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 60, 30));
 
         panelSlide.add(panelInventory, "card3");
 
@@ -383,10 +408,11 @@ public class Main extends javax.swing.JFrame {
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "RFC", "Phone", "Company", "Address"
             }
         ));
         scrollSupplier.setViewportView(tableSupplier);
@@ -419,6 +445,26 @@ public class Main extends javax.swing.JFrame {
         panelShopping.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 620, 400));
 
         panelSlide.add(panelShopping, "card5");
+
+        panelUser.setBackground(new java.awt.Color(0, 0, 0));
+        panelUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nombre", "Correo", "Telefono", "Rol"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        panelUser.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 570, 380));
+
+        panelSlide.add(panelUser, "card6");
 
         panelVenta.add(panelSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 660, 490));
 
@@ -527,10 +573,14 @@ public class Main extends javax.swing.JFrame {
         user.mostrasUsuarios();
     }//GEN-LAST:event_btnBuyMouseClicked
 
+    private void btnShopping1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShopping1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnShopping1MouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -570,6 +620,7 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Label btnModify;
     private javax.swing.JLabel btnShop;
     private javax.swing.JLabel btnShopping;
+    private javax.swing.JLabel btnShopping1;
     private javax.swing.JLabel btnSupplier;
     private javax.swing.JComboBox<String> comboProducto;
     private javax.swing.JComboBox<String> comboQuantity;
@@ -577,7 +628,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboSupplier;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblCompany;
@@ -586,6 +639,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel lblNameShop;
     private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblQuantityInv;
+    private javax.swing.JLabel lblQuantityInv1;
     private javax.swing.JLabel lblQuantityShop;
     private javax.swing.JLabel lblRfc;
     private javax.swing.JLabel lblSize;
@@ -596,6 +650,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel panelShopping;
     private javax.swing.JPanel panelSlide;
     private javax.swing.JPanel panelSupplier;
+    private javax.swing.JPanel panelUser;
     private javax.swing.JPanel panelVenta;
     private javax.swing.JScrollPane scrollSale;
     private javax.swing.JScrollPane scrollSupplier;
@@ -612,6 +667,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField txtBrand;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtCompany;
+    private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtQuantity;
