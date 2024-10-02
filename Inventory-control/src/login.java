@@ -108,25 +108,34 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+        Usuarios user = new Usuarios();
         validaciones vali = new validaciones();
         Main main = new Main();
         String User = "admin@gmail.com";
         String Pass = "1234";
         boolean emailLogin = vali.validarCorreo(txtEmailLogin.getText().toString());
         boolean passLogin = vali.valPassword(txtPasswordLogin.getText().toString());
+        boolean exists = user.loginUsuario(txtEmailLogin.getText().toString(), txtPasswordLogin.getText().toString());
         if(emailLogin){
             if(passLogin){
-                JOptionPane.showMessageDialog(null, "DATOS VALIDADOS");
+                if(exists){
+                    JOptionPane.showMessageDialog(null, "Usuario Correcto");
+                    main.setVisible(true);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
+                }
             }else{
                 JOptionPane.showMessageDialog(null, "CONTRASENA INVALIDO");
             }
         }else{
             JOptionPane.showMessageDialog(null, "CORREO INVALIDO");
         }
-        if(txtEmailLogin.getText().equals(User) && txtPasswordLogin.getText().equals(Pass)){
-            main.setVisible(true);
-            dispose();
-        }
+        
+//        if(txtEmailLogin.getText().equals(User) && txtPasswordLogin.getText().equals(Pass)){
+//            main.setVisible(true);
+//            dispose();
+//        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

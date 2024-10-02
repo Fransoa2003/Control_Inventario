@@ -129,7 +129,6 @@ public class Usuarios {
             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE,"Ocurrio un error al crear el usuario",error);
             return false;
         }
-   
         return true;
     }
     
@@ -230,5 +229,31 @@ public class Usuarios {
             Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE,"Error al buscar el producto",error);
             return usuario;
         }
+    }
+    public boolean loginUsuario(String user, String pass){
+        boolean existsUser = false;
+        String queryCamparar = "SELECT * FROM usuarios WHERE Email = ? AND Password = ? AND EstadoUsuario = ?";
+        try {
+            
+            Conexion conexion = new Conexion();
+            PreparedStatement sql = conexion.getConexion().prepareStatement(queryCamparar);
+            
+            sql.setString(1, user); // Asignar el email
+            sql.setString(2, pass); // Asignar la contraseña
+            sql.setInt(3, 1);
+            
+            ResultSet rs = sql.executeQuery();
+            
+            if(rs.next()){
+                existsUser = true;
+                System.out.println("Usuario existente");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+           
+        
+        return existsUser;
     }
 }
