@@ -5,6 +5,7 @@
 
 
 import com.mysql.cj.protocol.Resultset;
+import java.beans.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -69,7 +72,7 @@ public class Proveedores {
     public boolean crearProveedor(String[] valores){
         try{
             Conexion conexion = new Conexion();
-            String consulta = String.format("INSERT INTO proveedores VALUES('%s','%s','%s','%s',1)",
+            String consulta = String.format("INSERT INTO proveedores VALUES('%s','%s','%s','%s')",
                                             valores[0],valores[1],valores[2],valores[3]);
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
             sql.execute();
@@ -162,5 +165,32 @@ public class Proveedores {
             Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE,"Error al buscar el proveedor",error);
             return proveedor;
         }
+    }
+    public boolean mostrarTabla(JTable tabla){
+        Conexion conexion = new Conexion();
+        DefaultTableModel tableModel = (DefaultTableModel) tabla.getModel();
+        tableModel.setRowCount(0); 
+        try {
+            String Query = "SELECT * FROM proveedores";
+            PreparedStatement st = conexion.getConexion().prepareStatement(Query);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                String RFC = rs.getString("Rfc");
+                String company = rs.getString("RazonSocial");
+                String addres = rs.getString("Direccion");
+                String phone = rs. getString("Telefono");
+                
+                tableModel.addRow(new Object[] {RFC, company, addres, phone});
+            }
+            tabla.setModel(tableModel);
+            
+            rs.close();
+            st.close();
+            conexion.getConexion().close();
+            
+        } catch (Exception e) {
+        }
+        return true;
     }
 }

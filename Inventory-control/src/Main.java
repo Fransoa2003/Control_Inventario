@@ -37,8 +37,8 @@ public class Main extends javax.swing.JFrame {
         btnSupplier = new javax.swing.JLabel();
         btnShop = new javax.swing.JLabel();
         btnInventory = new javax.swing.JLabel();
+        btnUser = new javax.swing.JLabel();
         btnShopping = new javax.swing.JLabel();
-        btnShopping1 = new javax.swing.JLabel();
         panelSlide = new javax.swing.JPanel();
         panelSale = new javax.swing.JPanel();
         titleSale = new javax.swing.JLabel();
@@ -148,31 +148,31 @@ public class Main extends javax.swing.JFrame {
         });
         panelMenu.add(btnInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 150, 30));
 
+        btnUser.setBackground(new java.awt.Color(255, 255, 255));
+        btnUser.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        btnUser.setForeground(new java.awt.Color(255, 255, 255));
+        btnUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_white.png"))); // NOI18N
+        btnUser.setText("User");
+        btnUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUserMouseClicked(evt);
+            }
+        });
+        panelMenu.add(btnUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 150, 40));
+
         btnShopping.setBackground(new java.awt.Color(255, 255, 255));
         btnShopping.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         btnShopping.setForeground(new java.awt.Color(255, 255, 255));
-        btnShopping.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_white.png"))); // NOI18N
-        btnShopping.setText("User");
+        btnShopping.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgShop.png"))); // NOI18N
+        btnShopping.setText("Shopping");
         btnShopping.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnShopping.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnShoppingMouseClicked(evt);
             }
         });
-        panelMenu.add(btnShopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 150, 40));
-
-        btnShopping1.setBackground(new java.awt.Color(255, 255, 255));
-        btnShopping1.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        btnShopping1.setForeground(new java.awt.Color(255, 255, 255));
-        btnShopping1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgShop.png"))); // NOI18N
-        btnShopping1.setText("Shopping");
-        btnShopping1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnShopping1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnShopping1MouseClicked(evt);
-            }
-        });
-        panelMenu.add(btnShopping1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, 30));
+        panelMenu.add(btnShopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 150, 30));
 
         panelVenta.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 480));
 
@@ -482,6 +482,7 @@ public class Main extends javax.swing.JFrame {
       panelInventory.setVisible(false);
       panelSupplier.setVisible(false);
       panelShopping.setVisible(false);
+      panelUser.setVisible(false);
     }//GEN-LAST:event_btnShopMouseClicked
 
     private void btnInventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInventoryMouseClicked
@@ -489,13 +490,19 @@ public class Main extends javax.swing.JFrame {
       panelInventory.setVisible(true);
       panelSupplier.setVisible(false);
       panelShopping.setVisible(false);
+      panelUser.setVisible(false);
     }//GEN-LAST:event_btnInventoryMouseClicked
 
     private void btnSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSupplierMouseClicked
+      Proveedores supplier = new Proveedores();
+      
       panelSale.setVisible(false);
       panelInventory.setVisible(false);
       panelSupplier.setVisible(true);
       panelShopping.setVisible(false);
+      panelUser.setVisible(false);
+      supplier.mostrarTabla(tableSupplier);
+      
     }//GEN-LAST:event_btnSupplierMouseClicked
 
     private void txtRfcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRfcActionPerformed
@@ -504,20 +511,34 @@ public class Main extends javax.swing.JFrame {
 
     private void btnAddSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddSupplierMouseClicked
         validaciones validar = new validaciones();
+        Proveedores supplier = new Proveedores();
+        
+        String proRfc = txtRfc.getText().toString();
+        String proCompany = txtCompany.getText().toString();
+        String proDireccion = txtAddress.getText().toString();
+        String proTelefono = txtPhone.getText().toString();
+        
+        String [] dataCreateSupplier = new String[]{
+            proRfc,
+            proCompany,
+            proDireccion,
+            proTelefono
+        };
+        
         boolean rfc = validar.valRfc(txtRfc.getText().toString());
-        boolean phone = validar.valPhone(txtPhone.getText().toString());
+        boolean phone = validar.valNumbers(txtPhone.getText().toString());
         boolean nameCompany = validar.valCompany(txtCompany.getText().toString());
         boolean address = validar.valAddress(txtAddress.getText().toString());
         //valida el rcf
         if(rfc){
-            JOptionPane.showMessageDialog(null, "RFC VALIDO");
-            //valida el telefono
+            
             if(phone){
-                JOptionPane.showMessageDialog(null, "TELEFONO VALIDO");
                 if(nameCompany){
-                    JOptionPane.showMessageDialog(null, "RAZON S. VALIDO");
                     if(address){
-                        JOptionPane.showMessageDialog(null, "DIRECCION VALIDO");
+                        if(supplier.crearProveedor(dataCreateSupplier)){
+                            JOptionPane.showMessageDialog(null, "Proveedor Creado");
+                        }
+                        supplier.mostrarTabla(tableSupplier);
                     }else{
                         JOptionPane.showMessageDialog(null, "DIRECCION INVALIDO");
                     }
@@ -561,22 +582,27 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAddInvMouseClicked
 
+    private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
+        panelSale.setVisible(false);
+        panelInventory.setVisible(false);
+        panelSupplier.setVisible(false);
+        panelShopping.setVisible(false);
+        panelUser.setVisible(true);
+    }//GEN-LAST:event_btnUserMouseClicked
+
+    private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
+        
+        
+    }//GEN-LAST:event_btnBuyMouseClicked
+
     private void btnShoppingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShoppingMouseClicked
         panelSale.setVisible(false);
         panelInventory.setVisible(false);
         panelSupplier.setVisible(false);
         panelShopping.setVisible(true);
+        panelUser.setVisible(false);
     }//GEN-LAST:event_btnShoppingMouseClicked
-
-    private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
-        Usuarios user = new Usuarios();
-        
-    }//GEN-LAST:event_btnBuyMouseClicked
-
-    private void btnShopping1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShopping1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnShopping1MouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
@@ -620,8 +646,8 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Label btnModify;
     private javax.swing.JLabel btnShop;
     private javax.swing.JLabel btnShopping;
-    private javax.swing.JLabel btnShopping1;
     private javax.swing.JLabel btnSupplier;
+    private javax.swing.JLabel btnUser;
     private javax.swing.JComboBox<String> comboProducto;
     private javax.swing.JComboBox<String> comboQuantity;
     private javax.swing.JComboBox<String> comboSize;

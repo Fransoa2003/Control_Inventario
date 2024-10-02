@@ -20,6 +20,7 @@ public class Usuarios {
     private String rfc;
     private String nombre;
     private String apellidos;
+    private String usuario;
     private String rol;
     private int edad;
     private String password;
@@ -31,10 +32,11 @@ public class Usuarios {
     
     }
 
-    public Usuarios(String rfc, String nombre, String apellidos, String rol, int edad, String password, String sexo, String email, String telefono) {
+    public Usuarios(String rfc, String nombre, String apellidos, String usuario, String rol, int edad, String password, String sexo, String email, String telefono) {
         this.rfc = rfc;
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.usuario = usuario;
         this.rol = rol;
         this.edad = edad;
         this.password = password;
@@ -65,6 +67,14 @@ public class Usuarios {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getRol() {
@@ -114,13 +124,13 @@ public class Usuarios {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
     public boolean crearUsuario(String[] valores){
         try{
             Conexion conexion = new Conexion();
-            String consulta = String.format("INSERT INTO usuarios VALUES('%s','%s','%s','%s',%s,'%s','%s','%s','%s',1);",
+            String consulta = String.format("INSERT INTO usuarios VALUES('%s','%s','%s','%s','%s',%s,'%s','%s','%s','%s');",
                                             valores[0],valores[1],valores[2],valores[3],valores[4],valores[5],valores[6],
-                                            valores[7],valores[8]);
+                                            valores[7],valores[8],valores[9]);
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
             sql.execute();
             conexion.getConexion().close();
@@ -129,6 +139,7 @@ public class Usuarios {
             Logger.getLogger(Productos.class.getName()).log(Level.SEVERE,"Ocurrio un error al crear el usuario",error);
             return false;
         }
+   
         return true;
     }
     
@@ -154,9 +165,9 @@ public class Usuarios {
     public boolean eliminarUsuario(String rfc){
         try{
             Conexion conexion = new Conexion();
-            String consulta = String.format("UPDATE usuarios SET EstadoUsuarios=0 WHERE Rfc='%s';",rfc);
+            String consulta = String.format("DELETE FROM usuarios WHERE Rfc='%s';",rfc);
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
-            sql.executeUpdate();
+            sql.execute();
             conexion.getConexion().close();
             System.out.println("Usuario eliminado");
         }catch(SQLException error){
@@ -171,7 +182,7 @@ public class Usuarios {
         List<Usuarios> listaUsuarios = new ArrayList<>();
         try{
             Conexion conexion = new Conexion();
-            String consulta = "SELECT * FROM usuarios WHERE EstadoUsuarios=1";
+            String consulta = "SELECT * FROM usuarios";
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
             ResultSet resultados = sql.executeQuery();
             while(resultados.next()){
@@ -179,6 +190,7 @@ public class Usuarios {
                             resultados.getString("Rfc"),
                             resultados.getString("Nombre"),
                             resultados.getString("Apellidos"),
+                            resultados.getString("Usuario"),
                             resultados.getString("Rol"),
                             resultados.getInt("Edad"),
                             resultados.getString("Password"),
@@ -192,17 +204,18 @@ public class Usuarios {
             resultados.close();
             conexion.getConexion().close();
         }catch(SQLException error){
-            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE,"Error al buscar los proveedores",error);
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE,"Error al buscar los usuarios",error);
             return listaUsuarios;
         }
         return listaUsuarios;
     }
     
-    public Usuarios obtenerUsuario(String valor){
+    public Usuarios obtenerUsuarioBusqueda(String valor){
         Usuarios usuario = new Usuarios();
         try{
             Conexion conexion = new Conexion();
-            String consulta = String.format("SELECT * FROM usuarios WHERE (Rfc='%s' OR Nombre='%s' OR Apellidos='%s') AND EstadoUsuarios=1", valor,valor,valor);
+            String consulta = String.format("SELECT * FROM usuarios WHERE (Rfc='%s' OR Nombre='%s' OR Apellidos='%s' OR Usuario='%s');",
+                                            valor,valor,valor,valor);
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
             ResultSet resultado = sql.executeQuery();
             
@@ -213,6 +226,7 @@ public class Usuarios {
                             resultado.getString("Rfc"),
                             resultado.getString("Nombre"),
                             resultado.getString("Apellidos"),
+                            resultado.getString("Usuario"),
                             resultado.getString("Rol"),
                             resultado.getInt("Edad"),
                             resultado.getString("Password"),
@@ -230,30 +244,39 @@ public class Usuarios {
             return usuario;
         }
     }
-    public boolean loginUsuario(String user, String pass){
-        boolean existsUser = false;
-        String queryCamparar = "SELECT * FROM usuarios WHERE Email = ? AND Password = ? AND EstadoUsuario = ?";
-        try {
-            
+        
+        public Usuarios obtenerUsuario(String usuarioBuscado){
+        Usuarios usuario = new Usuarios();
+        try{
             Conexion conexion = new Conexion();
-            PreparedStatement sql = conexion.getConexion().prepareStatement(queryCamparar);
+            String consulta = String.format("SELECT * FROM usuarios WHERE usuario='%s';",
+                                            usuarioBuscado);
+            PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
+            ResultSet resultado = sql.executeQuery();
             
-            sql.setString(1, user); // Asignar el email
-            sql.setString(2, pass); // Asignar la contraseña
-            sql.setInt(3, 1);
-            
-            ResultSet rs = sql.executeQuery();
-            
-            if(rs.next()){
-                existsUser = true;
-                System.out.println("Usuario existente");
+            //Verificamos si tiene algun registro dentro, esto al recorrer el apuntador de elemento
+            if(resultado.next()){
+                
+                usuario = new Usuarios(
+                            resultado.getString("Rfc"),
+                            resultado.getString("Nombre"),
+                            resultado.getString("Apellidos"),
+                            resultado.getString("Usuario"),
+                            resultado.getString("Rol"),
+                            resultado.getInt("Edad"),
+                            resultado.getString("Password"),
+                            resultado.getString("Sexo"),
+                            resultado.getString("Email"),
+                            resultado.getString("Telefono")
+                           );
             }
             
-        } catch (SQLException e) {
-            e.printStackTrace();
+            resultado.close();
+            conexion.getConexion().close();
+            return usuario;
+        }catch(SQLException error){
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE,"Error al buscar el producto",error);
+            return usuario;
         }
-           
-        
-        return existsUser;
     }
 }

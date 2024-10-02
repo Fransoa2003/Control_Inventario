@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import javax.swing.JTable;
 /**
  *
  * @author JESUS EMMANUEL LR
@@ -106,7 +107,7 @@ public class Productos {
     public boolean crearProducto(String[] valores){
         try{
             Conexion conexion = new Conexion();
-            String consulta = String.format("INSERT INTO productos VALUES('%s','%s','%s','%s','%s',%s,%s,%s,1);",
+            String consulta = String.format("INSERT INTO productos VALUES('%s','%s','%s','%s','%s',%s,%s,%s);",
                                             valores[0],valores[1],valores[2],valores[3],valores[4],valores[5],valores[6],
                                             valores[7]);
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
