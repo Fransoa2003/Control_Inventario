@@ -602,7 +602,20 @@ public class Main extends javax.swing.JFrame {
         panelShopping.setVisible(true);
         panelUser.setVisible(false);
     }//GEN-LAST:event_btnShoppingMouseClicked
+<<<<<<< HEAD
     
+=======
+
+    private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
+        
+        
+    }//GEN-LAST:event_btnBuyMouseClicked
+
+    private void btnShopping1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShopping1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnShopping1MouseClicked
+
+>>>>>>> f995912b64e0b74e50302967d0d2981f13c85508
     /**
      * @param args the command line arguments
      */
