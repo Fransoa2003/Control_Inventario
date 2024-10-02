@@ -505,7 +505,7 @@ public class Main extends javax.swing.JFrame {
     private void btnAddSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddSupplierMouseClicked
         validaciones validar = new validaciones();
         boolean rfc = validar.valRfc(txtRfc.getText().toString());
-        boolean phone = validar.valPhone(txtPhone.getText().toString());
+        boolean phone = validar.valNumbers(txtPhone.getText().toString());
         boolean nameCompany = validar.valCompany(txtCompany.getText().toString());
         boolean address = validar.valAddress(txtAddress.getText().toString());
         //valida el rcf
@@ -569,7 +569,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnShoppingMouseClicked
 
     private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
-        Usuarios user = new Usuarios();
+        
         
     }//GEN-LAST:event_btnBuyMouseClicked
 
