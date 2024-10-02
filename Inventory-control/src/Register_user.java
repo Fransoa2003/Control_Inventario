@@ -66,7 +66,7 @@ public class Register_user extends javax.swing.JFrame {
         jLabel1.setText("Sign Up");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 70));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 70));
 
         txtNameUser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         txtNameUser.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class Register_user extends javax.swing.JFrame {
                 txtNameUserActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNameUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 260, -1));
+        jPanel1.add(txtNameUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 290, -1));
 
         lblName.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,7 +93,7 @@ public class Register_user extends javax.swing.JFrame {
                 txtLastNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 260, -1));
+        jPanel1.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 290, -1));
 
         txtEmailUser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         txtEmailUser.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +101,7 @@ public class Register_user extends javax.swing.JFrame {
                 txtEmailUserActionPerformed(evt);
             }
         });
-        jPanel1.add(txtEmailUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 260, -1));
+        jPanel1.add(txtEmailUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 290, -1));
 
         lblEmailUser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         lblEmailUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,7 +115,7 @@ public class Register_user extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 260, -1));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 290, -1));
 
         lblPasswordUser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         lblPasswordUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,9 +144,9 @@ public class Register_user extends javax.swing.JFrame {
         jPanel1.add(lblPhoneUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 90, 30));
 
         comboGander.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        comboGander.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        comboGander.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Female", "Male" }));
         comboGander.setSelectedIndex(-1);
-        jPanel1.add(comboGander, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 60, -1));
+        jPanel1.add(comboGander, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 290, -1, -1));
 
         lblAge.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         lblAge.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,7 +171,7 @@ public class Register_user extends javax.swing.JFrame {
         comboRole.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         comboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Employee" }));
         comboRole.setSelectedIndex(-1);
-        jPanel1.add(comboRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 120, -1));
+        jPanel1.add(comboRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, -1));
 
         txtRfcUser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         txtRfcUser.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +179,7 @@ public class Register_user extends javax.swing.JFrame {
                 txtRfcUserActionPerformed(evt);
             }
         });
-        jPanel1.add(txtRfcUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 260, -1));
+        jPanel1.add(txtRfcUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 290, -1));
 
         lblRfcUser.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         lblRfcUser.setForeground(new java.awt.Color(255, 255, 255));
@@ -235,14 +235,41 @@ public class Register_user extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRfcUserActionPerformed
 
     private void btnAddSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddSignUpMouseClicked
+        //Instanciamos nuevos objetos
+        Usuarios createUser = new Usuarios();
         validaciones vali = new validaciones();
+        //Obtenemos los datos del formulario
+        String strRfc = txtRfcUser.getText().toString();
+        String strName = txtNameUser.getText().toString();
+        String strLastName = txtLastName.getText().toString();
+        String strRole = comboRole.getSelectedItem().toString();
+        String strEge = txtEge.getText().toString();
+        String strPass = txtPassword.getText().toString();
+        String strGander = comboGander.getSelectedItem().toString();
+        String strEmail = txtEmailUser.getText().toString();
+        String strPhone = txtPhoneUser.getText().toString();
+        
+        //Intriducimos los datos a un array para hacer el Query de la base de datos
+        
+        String [] dataUser = new String[]{
+            strRfc,
+            strName,
+            strLastName,
+            strRole,
+            strEge,
+            strPass,
+            strGander,
+            strEmail,
+            strPhone
+        };
+        
         boolean rfcUser = vali.valRfc(txtRfcUser.getText().toString());
         boolean nameUser = vali.valName(txtNameUser.getText().toString());
         boolean lastName = vali.valName(txtLastName.getText().toString());
         boolean emailUser = vali.validarCorreo(txtEmailUser.getText().toString());
         boolean passwordUser = vali.valPassword(txtPassword.getText().toString());
         boolean phoneUser = vali.valPhone(txtPhoneUser.getText().toString());
-        boolean egelUser = vali.valPhone(txtEge.getText().toString());
+        boolean egelUser = vali.numers(txtEge.getText().toString());
         
         //VALIDACIONES DE LOS COMPONENTES ----------- JADUQUEN DE VALIDACION
         if(rfcUser){
@@ -252,7 +279,10 @@ public class Register_user extends javax.swing.JFrame {
                         if(passwordUser){
                             if(phoneUser){
                                 if(egelUser){
-                                    JOptionPane.showMessageDialog(null, "TODO ES VALIDADO");
+                                    //JOptionPane.showMessageDialog(null, "TODO ES VALIDADO");
+                                    //Creamos el usuario
+                                    createUser.crearUsuario(dataUser);
+                                    JOptionPane.showMessageDialog(null, "Usuario creado");
                                 }else{
                                     JOptionPane.showMessageDialog(null, "EDAD INVALIDO");
                                 }
@@ -280,7 +310,7 @@ public class Register_user extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

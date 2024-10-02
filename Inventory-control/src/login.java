@@ -30,7 +30,6 @@ public class login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtPasswordLogin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtEmailLogin = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -38,6 +37,7 @@ public class login extends javax.swing.JFrame {
         btnLogin = new java.awt.Label();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtPasswordLogin = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,17 +50,12 @@ public class login extends javax.swing.JFrame {
         jLabel1.setText("Password:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
-        txtPasswordLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordLoginActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtPasswordLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 230, 30));
-
         jLabel3.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Email:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+
+        txtEmailLogin.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
         jPanel1.add(txtEmailLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -89,6 +84,12 @@ public class login extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Register");
         jLabel4.setToolTipText("");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, -1, 20));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -98,17 +99,19 @@ public class login extends javax.swing.JFrame {
         jLabel5.setToolTipText("");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, 20));
 
+        txtPasswordLogin.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        jPanel1.add(txtPasswordLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 132, 230, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPasswordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordLoginActionPerformed
-
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         validaciones vali = new validaciones();
+        Main main = new Main();
+        String User = "admin@gmail.com";
+        String Pass = "1234";
         boolean emailLogin = vali.validarCorreo(txtEmailLogin.getText().toString());
         boolean passLogin = vali.valPassword(txtPasswordLogin.getText().toString());
         if(emailLogin){
@@ -120,7 +123,17 @@ public class login extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "CORREO INVALIDO");
         }
+        if(txtEmailLogin.getText().equals(User) && txtPasswordLogin.getText().equals(Pass)){
+            main.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Register_user register = new Register_user();
+        register.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -167,6 +180,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtEmailLogin;
-    private javax.swing.JTextField txtPasswordLogin;
+    private javax.swing.JPasswordField txtPasswordLogin;
     // End of variables declaration//GEN-END:variables
 }

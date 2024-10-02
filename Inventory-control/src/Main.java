@@ -1,4 +1,5 @@
 
+
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
@@ -324,7 +325,6 @@ public class Main extends javax.swing.JFrame {
         panelInventory.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 130, 40));
 
         comboSize.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        comboSize.setSelectedIndex(-1);
         panelInventory.add(comboSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 110, 30));
 
         comboSupplier.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
@@ -537,7 +537,7 @@ public class Main extends javax.swing.JFrame {
         validaciones vali = new validaciones();
         boolean nombreProducto = vali.valCodigo(txtCode.getText().toString());
         boolean marca = vali.valName(txtBrand.getText().toString());
-        boolean cantidad = vali.valQuantity(txtQuantity.getText().toString());
+        boolean cantidad = vali.numers(txtQuantity.getText().toString());
         boolean descripcion = vali.valName(txtDescription.getText().toString());
         if(nombreProducto){
             JOptionPane.showMessageDialog(null, "NOMBRE VALIDO");
@@ -570,7 +570,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
         Usuarios user = new Usuarios();
-        user.mostrasUsuarios();
+        
     }//GEN-LAST:event_btnBuyMouseClicked
 
     private void btnShopping1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShopping1MouseClicked
@@ -580,7 +580,7 @@ public class Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

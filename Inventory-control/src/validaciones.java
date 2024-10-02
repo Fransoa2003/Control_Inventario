@@ -79,14 +79,15 @@ public class validaciones {
         for(char letra : letras){
             int letraAscii = letra;
             if(!(letraAscii >64 && letraAscii<91 || 
-                    letraAscii >96 && letraAscii<123)){
+                    letraAscii >96 && letraAscii<123 ||
+                    letraAscii == 32)){
                 respuesta = false;
                 break;
             }
         }
         return respuesta;
     }
-    public boolean valQuantity(String cadena){
+    public boolean numers(String cadena){
         boolean respuesta = true;
         char[] letras = cadena.toCharArray();
         for(char letra:letras){
@@ -223,4 +224,5 @@ public class validaciones {
 
         return isValido;
     }
+    
 }
