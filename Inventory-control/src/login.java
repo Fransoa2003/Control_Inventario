@@ -1,6 +1,6 @@
 
 import javax.swing.JOptionPane;
-
+import Modelos.Usuarios;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -30,8 +30,8 @@ public class login extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtEmailLogin = new javax.swing.JTextField();
+        lblUsuario = new javax.swing.JLabel();
+        txtUsuarioLogin = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         btnLogin = new java.awt.Label();
@@ -50,13 +50,13 @@ public class login extends javax.swing.JFrame {
         jLabel1.setText("Password:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Email:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+        lblUsuario.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setText("User:");
+        jPanel1.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
-        txtEmailLogin.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
-        jPanel1.add(txtEmailLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, 30));
+        txtUsuarioLogin.setFont(new java.awt.Font("Cambria", 0, 18)); // NOI18N
+        jPanel1.add(txtUsuarioLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 230, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,34 +108,25 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        Usuarios user = new Usuarios();
-        validaciones vali = new validaciones();
-        Main main = new Main();
-        String User = "admin@gmail.com";
-        String Pass = "1234";
-        boolean emailLogin = vali.validarCorreo(txtEmailLogin.getText().toString());
-        boolean passLogin = vali.valPassword(txtPasswordLogin.getText().toString());
-        boolean exists = user.loginUsuario(txtEmailLogin.getText().toString(), txtPasswordLogin.getText().toString());
-        if(emailLogin){
-            if(passLogin){
-                if(exists){
-                    JOptionPane.showMessageDialog(null, "Usuario Correcto");
-                    main.setVisible(true);
-                    dispose();
-                }else{
-                    JOptionPane.showMessageDialog(null, "Usuario Incorrecto");
-                }
+        Usuarios usuario = new Usuarios();
+        validaciones validacion = new validaciones();
+        Main principal = new Main();
+        
+        String usuarioTxt = this.txtUsuarioLogin.getText();
+        String passwordTxt = this.txtPasswordLogin.getText();
+        
+        usuario = usuario.obtenerUsuarioBusqueda(usuarioTxt);
+        if(usuario.getRfc() != null){
+            //System.out.println(usuario.getUsuario() + " " + usuario.getPassword());
+            if(usuario.getUsuario().equals(usuarioTxt) && usuario.getPassword().equals(passwordTxt)){
+                principal.setVisible(true);
+                this.dispose();
             }else{
-                JOptionPane.showMessageDialog(null, "CONTRASENA INVALIDO");
+                JOptionPane.showMessageDialog(null, "Credenciales incorrectas 2");
             }
         }else{
-            JOptionPane.showMessageDialog(null, "CORREO INVALIDO");
+            JOptionPane.showMessageDialog(null, "Credenciales incorrectas 1");
         }
-        
-//        if(txtEmailLogin.getText().equals(User) && txtPasswordLogin.getText().equals(Pass)){
-//            main.setVisible(true);
-//            dispose();
-//        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -183,12 +174,12 @@ public class login extends javax.swing.JFrame {
     private java.awt.Label btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtEmailLogin;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtPasswordLogin;
+    private javax.swing.JTextField txtUsuarioLogin;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -27,16 +30,28 @@ public class validaciones {
         
         return respuesta;
     }
+    //Validacion user
+    public boolean valUser(String cadena){
+        
+        char[] letras = cadena.toCharArray();
+        boolean respuesta = true;
+        for(char letra : letras){
+            int letraAscii = (int)letra;
+            if(!(letraAscii > 47 && letraAscii < 58 || letraAscii > 96 && letraAscii < 123)){
+                respuesta = false;
+                break;
+            }
+        }
+        
+        return respuesta;
+    }
     //Validar telefono
-    public boolean valPhone(String cadena){
+    public boolean valNumbers(String cadena){
         boolean respuesta = true;
         char[] letras = cadena.toCharArray();
-        if(cadena.length()!=10){
-            respuesta = false;
-        }
         for(char letra:letras){
             int letraAscii = letra;
-            if(!(letraAscii > 47 && letraAscii<64)){
+            if(!(letraAscii > 47 && letraAscii<58)){
                 respuesta = false;
                 break;
             } 
