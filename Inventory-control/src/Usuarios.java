@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Jesus Vazquez
@@ -162,11 +164,13 @@ public class Usuarios {
         return true;
     }
     
-    public boolean eliminarUsuario(String rfc){
+    public boolean eliminarUsuario(String datoStr){
         try{
+            
             Conexion conexion = new Conexion();
-            String consulta = String.format("DELETE FROM usuarios WHERE Rfc='%s';",rfc);
+            String consulta = "DELETE FROM usuarios WHERE Rfc = ?";
             PreparedStatement sql = conexion.getConexion().prepareStatement(consulta);
+            sql.setString(1, datoStr);
             sql.execute();
             conexion.getConexion().close();
             System.out.println("Usuario eliminado");
@@ -279,4 +283,34 @@ public class Usuarios {
             return usuario;
         }
     }
+        public boolean mostrarTabla(JTable tabla){
+            Conexion conexion = new Conexion();
+            DefaultTableModel tableModel = (DefaultTableModel) tabla.getModel();
+            tableModel.setRowCount(0);
+            
+            try {
+                String query = "SELECT Rfc, Nombre, Email, Telefono, Rol FROM usuarios";
+                PreparedStatement st = conexion.getConexion().prepareStatement(query);
+                ResultSet rs = st.executeQuery();
+                
+                while(rs.next()){
+                    String rfcStr = rs.getString("Rfc");
+                    String nombreStr = rs.getString("Email");
+                    String emailStr = rs.getString("Telefono");
+                    String telefonoStr = rs.getString("Email");
+                    String rolStr = rs.getString("Rol");
+                    
+                    tableModel.addRow(new Object[]{rfcStr, nombreStr, telefonoStr, emailStr, rolStr});
+                }
+                tabla.setModel(tableModel);
+                
+                rs.close();
+                st.close();
+                conexion.getConexion().close();
+                
+            } catch (Exception e) {
+            }
+            
+            return true;
+        }
 }

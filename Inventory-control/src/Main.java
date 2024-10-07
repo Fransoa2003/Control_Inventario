@@ -89,7 +89,9 @@ public class Main extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         panelUser = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableUsuario = new javax.swing.JTable();
+        titleInventory2 = new javax.swing.JLabel();
+        btnEliminarUser = new java.awt.Label();
 
         jLabel5.setText("jLabel5");
 
@@ -449,7 +451,7 @@ public class Main extends javax.swing.JFrame {
         panelUser.setBackground(new java.awt.Color(0, 0, 0));
         panelUser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -457,12 +459,28 @@ public class Main extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Correo", "Telefono", "Rol"
+                "RFC", "Nombre", "Correo", "Telefono", "Rol"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tableUsuario);
 
-        panelUser.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 570, 380));
+        panelUser.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 570, 290));
+
+        titleInventory2.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        titleInventory2.setForeground(new java.awt.Color(255, 255, 255));
+        titleInventory2.setText("User");
+        panelUser.add(titleInventory2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        btnEliminarUser.setAlignment(java.awt.Label.CENTER);
+        btnEliminarUser.setBackground(new java.awt.Color(255, 51, 51));
+        btnEliminarUser.setFont(new java.awt.Font("Cambria", 0, 24)); // NOI18N
+        btnEliminarUser.setText("Delete");
+        btnEliminarUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarUserMouseClicked(evt);
+            }
+        });
+        panelUser.add(btnEliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 120, 40));
 
         panelSlide.add(panelUser, "card6");
 
@@ -583,11 +601,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAddInvMouseClicked
 
     private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
+        Usuarios usuario = new Usuarios();
+        
         panelSale.setVisible(false);
         panelInventory.setVisible(false);
         panelSupplier.setVisible(false);
         panelShopping.setVisible(false);
         panelUser.setVisible(true);
+        usuario.mostrarTabla(tableUsuario);
     }//GEN-LAST:event_btnUserMouseClicked
 
     private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
@@ -602,20 +623,22 @@ public class Main extends javax.swing.JFrame {
         panelShopping.setVisible(true);
         panelUser.setVisible(false);
     }//GEN-LAST:event_btnShoppingMouseClicked
-<<<<<<< HEAD
+
+    private void btnEliminarUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarUserMouseClicked
+        Usuarios usuario = new Usuarios();
+        int datoSelect = tableUsuario.getSelectedRow();
+        if (datoSelect == -1) {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona un usuario para eliminar.");
+            return;
+        }
+        
+        String datoEliminar = (String) tableUsuario.getValueAt(datoSelect, 0);
+        System.out.println("RFC a eliminar: " + datoEliminar);
+        
+        usuario.eliminarUsuario(datoEliminar);
+        usuario.mostrarTabla(tableUsuario);
+    }//GEN-LAST:event_btnEliminarUserMouseClicked
     
-=======
-
-    private void btnBuyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuyMouseClicked
-        
-        
-    }//GEN-LAST:event_btnBuyMouseClicked
-
-    private void btnShopping1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShopping1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnShopping1MouseClicked
-
->>>>>>> f995912b64e0b74e50302967d0d2981f13c85508
     /**
      * @param args the command line arguments
      */
@@ -655,6 +678,7 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Label btnAddSupplier;
     private java.awt.Label btnBuy;
     private java.awt.Label btnDelete;
+    private java.awt.Label btnEliminarUser;
     private javax.swing.JLabel btnInventory;
     private java.awt.Label btnModify;
     private javax.swing.JLabel btnShop;
@@ -669,7 +693,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblCompany;
@@ -696,9 +719,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable tableInventory;
     private javax.swing.JTable tableSale;
     private javax.swing.JTable tableSupplier;
+    private javax.swing.JTable tableUsuario;
     private javax.swing.JLabel titleDashboard;
     private javax.swing.JLabel titleInventory;
     private javax.swing.JLabel titleInventory1;
+    private javax.swing.JLabel titleInventory2;
     private javax.swing.JLabel titleSale;
     private javax.swing.JLabel titleSupplier;
     private java.awt.Label txtAddInv;

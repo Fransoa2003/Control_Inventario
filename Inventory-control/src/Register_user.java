@@ -1,12 +1,5 @@
 
 import javax.swing.JOptionPane;
-<<<<<<< HEAD
-
-
-
-=======
-import Modelos.Usuarios;
->>>>>>> f995912b64e0b74e50302967d0d2981f13c85508
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -312,12 +305,7 @@ public class Register_user extends javax.swing.JFrame {
                 strEmail,
                 strPhone
             };
-            
-<<<<<<< HEAD
-            Usuarios usuarioBuscado = usuario.obtenerUsuario(strRfc);
-=======
             Usuarios usuarioBuscado = usuario.obtenerUsuarioBusqueda(strUser);
->>>>>>> f995912b64e0b74e50302967d0d2981f13c85508
             if(!(usuarioBuscado.getUsuario() != null)){
                 if(usuario.crearUsuario(dataUser)){
                     JOptionPane.showMessageDialog(null, "Usuario " + strUser + " creado de manera exitosa.");
